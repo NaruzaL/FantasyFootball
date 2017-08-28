@@ -7,13 +7,15 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace FantasyFootball.Models
 {
-    [Table("Teams")]
-    public class Team
+    [Table("Responses")]
+    public class Response
     {
         [Key]
-        public int TeamId { get; set; }
-        public string TeamName { get; set; }
+        public int ResponseId { get; set; }
+        public string Body { get; set; }
+        public string DateTime { get; set; }
+        public virtual Message Message { get; set; }
         public virtual ApplicationUser User { get; set; }
-        public virtual ICollection<Player> Players { get; set; }
+
     }
 }

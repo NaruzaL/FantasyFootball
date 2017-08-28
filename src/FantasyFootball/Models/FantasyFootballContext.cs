@@ -7,21 +7,24 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace FantasyFootball.Models
 {
-    public class FantasyFootballContext
+    public class FantasyFootballContext : IdentityDbContext<ApplicationUser>
     {
         public FantasyFootballContext(DbContextOptions options) : base(options)
         {
-
         }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
         }
-        //public virtual DbSet<Location> Locations { get; set; }
-        //public virtual DbSet<Experience> Experiences { get; set; }
-        //public virtual DbSet<People> People { get; set; }
-        //public virtual DbSet<Suggestion> Suggestions { get; set; }
-        public TravelBlogContext() { }
+        protected override void OnConfiguring(DbContextOptionsBuilder options)
+        {
+            options.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=FantasyFootball;integrated security=True");
+        }
+        public virtual DbSet<League> Leagues { get; set; }
+        public virtual DbSet<Team> Teams { get; set; }
+        public virtual DbSet<Player> Players { get; set; }
+
+        public FantasyFootballContext() { }
     }
 }
