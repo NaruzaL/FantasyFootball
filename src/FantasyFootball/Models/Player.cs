@@ -35,7 +35,7 @@ namespace FantasyFootball.Models
         public int PointsAllowed { get; set; }
         public int Interception { get; set; }
         public int Sack { get; set; }
-        public int ForcedFumbel { get; set; }
+        public int ForcedFumble { get; set; }
         public int FumbleRecovery { get; set; }
         public int BlockedKick { get; set; }
         public int DefTD { get; set; }
