@@ -1,5 +1,16 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
+﻿@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model IEnumerable<FantasyFootball.Models.League>
+
+<h3>Your leagues</h3>
+
+@foreach (var league in Model)
+{
+   
+        <h3>@Html.DisplayFor(model => league.Name)</h3>
+        <p>@Html.DisplayFor(model => league.Teams)</p>
+        <li>@Html.ActionLink("View this team", "Detials", "team", new { id = league.Teams })</li>
+
 }

@@ -1,0 +1,19 @@
+﻿@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model FantasyFootball.Models.Team
+
+<h2>Create your team</h2>
+<hr />
+@using (Html.BeginForm())
+{
+    <div id="leagueForm">
+
+        @Html.LabelFor(model => model.TeamName)
+        @Html.EditorFor(model => model.TeamName)
+
+        <input type="submit" value="Create" />
+    </div>
+}
+@Html.ActionLink("Back to FFB home", "Index", "League")

@@ -14,6 +14,7 @@ namespace FantasyFootball.Models
         public int TeamId { get; set; }
         public string TeamName { get; set; }
         public virtual ApplicationUser User { get; set; }
+        public virtual League League { get; set; }
         public virtual ICollection<Player> Players { get; set; }
     }
 }

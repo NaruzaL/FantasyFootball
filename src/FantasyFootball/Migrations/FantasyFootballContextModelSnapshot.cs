@@ -30,8 +30,6 @@ namespace FantasyFootball.Migrations
 
                     b.Property<bool>("EmailConfirmed");
 
-                    b.Property<int?>("LeagueId");
-
                     b.Property<bool>("LockoutEnabled");
 
                     b.Property<DateTimeOffset?>("LockoutEnd");
@@ -57,8 +55,6 @@ namespace FantasyFootball.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("LeagueId");
-
                     b.HasIndex("NormalizedEmail")
                         .HasName("EmailIndex");
 
@@ -78,7 +74,13 @@ namespace FantasyFootball.Migrations
 
                     b.Property<string>("Name");
 
+                    b.Property<int>("TeamCount");
+
+                    b.Property<string>("UserId");
+
                     b.HasKey("LeagueId");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Leagues");
                 });
@@ -326,11 +328,11 @@ namespace FantasyFootball.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("FantasyFootball.Models.ApplicationUser", b =>
+            modelBuilder.Entity("FantasyFootball.Models.League", b =>
                 {
-                    b.HasOne("FantasyFootball.Models.League")
-                        .WithMany("Users")
-                        .HasForeignKey("LeagueId");
+                    b.HasOne("FantasyFootball.Models.ApplicationUser", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
                 });
 
             modelBuilder.Entity("FantasyFootball.Models.Message", b =>
@@ -365,7 +367,7 @@ namespace FantasyFootball.Migrations
 
             modelBuilder.Entity("FantasyFootball.Models.Team", b =>
                 {
-                    b.HasOne("FantasyFootball.Models.League")
+                    b.HasOne("FantasyFootball.Models.League", "League")
                         .WithMany("Teams")
                         .HasForeignKey("LeagueId");
 

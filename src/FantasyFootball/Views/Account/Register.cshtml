@@ -1,5 +1,25 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
+﻿@{
+    ViewData["Title"] = "Register";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
+@using FantasyFootball.ViewModels
+
+@model RegisterViewModel
+<div class="regForm">
+    <h2>Register</h2>
+    <hr />
+    @using (Html.BeginForm("Register", "Account", FormMethod.Post))
+    {
+        @Html.LabelFor(m => m.Email)
+        @Html.TextBoxFor(m => m.Email)
+
+        @Html.LabelFor(m => m.Password)
+        @Html.PasswordFor(m => m.Password)
+
+        @Html.LabelFor(m => m.ConfirmPassword)
+        @Html.PasswordFor(m => m.ConfirmPassword)
+
+        <input type="submit" value="Register" />
+    }
+</div>

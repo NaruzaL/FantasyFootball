@@ -1,5 +1,25 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
+﻿@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
+@using System.Security.Claims
+
+<div class="accountIndex">
+    <hr />
+    @if (User.Identity.IsAuthenticated)
+    {
+        <h3>Hello @User.Identity.Name!</h3>
+        @Html.ActionLink("See your leagues", "Index", "League")
+        <hr />
+        @using (Html.BeginForm("LogOff", "Account"))
+        {
+            <input type="submit" class="btn btn-info" value="Log out" />
+        }
+    }
+    else
+    {
+        <p>@Html.ActionLink("Register", "Register")</p>
+        <p>@Html.ActionLink("Log in", "Login")</p>
+    }
+</div>

@@ -8,6 +8,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{8CB32875-20CC-46C9-AB69-9B5E699DA074}"
 	ProjectSection(SolutionItems) = preProject
 		global.json = global.json
+		README.md = README.md
 	EndProjectSection
 EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "FantasyFootball", "src\FantasyFootball\FantasyFootball.xproj", "{4AC913BC-2D58-40AF-B917-68DF8F6A98EE}"

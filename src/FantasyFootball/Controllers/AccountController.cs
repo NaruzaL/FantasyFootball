@@ -14,8 +14,6 @@ namespace FantasyFootball.Controllers
     {
         private FantasyFootballContext db = new FantasyFootballContext();
 
-
-        //Basic User Account Info here...
         private readonly FantasyFootballContext _db;
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;

@@ -14,13 +14,15 @@ namespace FantasyFootball.Models
       public int LeagueId { get; set; }
       public string Name { get; set; }
       public int MaxTeams { get; set; }
+      public int TeamCount { get; set; }
       public virtual ICollection<Message> Messages { get; set; }
+      public virtual ApplicationUser User { get; set; }
       public virtual ICollection<Team> Teams { get; set; }
-      public virtual ICollection<ApplicationUser> Users { get; set; }
       
         public League ()
         {
-        MaxTeams = 10;
+            TeamCount = 0;
+            MaxTeams = 10;
         }
     
      }

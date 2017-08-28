@@ -1,0 +1,20 @@
+﻿@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model IEnumerable<FantasyFootball.Models.League>
+
+<h3>Leagues that still need teams</h3>
+
+@foreach (var league in Model)
+{
+    @if (league.TeamCount < league.MaxTeams)
+    {
+        <li>@Html.DisplayFor(model => league.Name)</li>
+        <li>@Html.DisplayFor(model => league.TeamCount) / 10 teams filled</li>
+        <li>@Html.ActionLink("Join", "Create", "Team", new { id = league.LeagueId})</li>
+
+    }
+
+
+}
