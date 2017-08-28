@@ -29,8 +29,8 @@ namespace FantasyFootball.Controllers
         [Authorize]
         public IActionResult Index(int id)
         {
-            var thisLeague = _db.Leagues.Include(l => l.Teams).FirstOrDefault(league => league.LeagueId == id);
-            return View(thisLeague);
+            var thisTeam = _db.Teams.Include(t => t.Players).FirstOrDefault(team => team.TeamId == id);
+            return View(thisTeam);
         }
 
         //make a new team
@@ -54,7 +54,7 @@ namespace FantasyFootball.Controllers
             _db.Teams.Add(team);
             _db.SaveChanges();
             return RedirectToAction("Index", "League");
-
         }
+
     }
 }

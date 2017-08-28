@@ -9,7 +9,8 @@
 @foreach(var team in Model.Teams)
 {
    
-    <h4>@Html.ActionLink(team.TeamName, "Details", "Team", new { id = team.TeamId })</h4>
+    <h4>@Html.ActionLink(team.TeamName, "Index", "Team", new { id = team.TeamId })</h4>
     <h5>Total Points: @team.TotalPoints</h5>
     <p>Points this week: @team.WeekPoints</p>
 }
+@Html.ActionLink("Home", "Index")
