@@ -30,7 +30,7 @@ namespace FantasyFootball.Controllers
         {
             var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
             var currentUser = await _userManager.FindByIdAsync(userId);
-            return View(_db.Leagues.Include(league => league.Teams).Where(x => x.User.Id == currentUser.Id).ToList());
+            return View(_db.Leagues.Where(x => x.User.Id == currentUser.Id).ToList());
         }
         //create a league
         [Authorize]
@@ -47,7 +47,7 @@ namespace FantasyFootball.Controllers
             league.User = currentUser;
             _db.Leagues.Add(league);
             _db.SaveChanges();
-            return RedirectToAction("Team", "Create");
+            return RedirectToAction("Index");
         }
         //home page for specific league
         [Authorize]

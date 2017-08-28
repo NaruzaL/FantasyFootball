@@ -206,11 +206,19 @@ namespace FantasyFootball.Migrations
                     b.Property<int>("TeamId")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int?>("LeagueId");
+                    b.Property<int>("CurrentPlayers");
+
+                    b.Property<int>("LeagueId");
+
+                    b.Property<int>("MaxPlayers");
 
                     b.Property<string>("TeamName");
 
+                    b.Property<int>("TotalPoints");
+
                     b.Property<string>("UserId");
+
+                    b.Property<int>("WeekPoints");
 
                     b.HasKey("TeamId");
 
@@ -369,7 +377,8 @@ namespace FantasyFootball.Migrations
                 {
                     b.HasOne("FantasyFootball.Models.League", "League")
                         .WithMany("Teams")
-                        .HasForeignKey("LeagueId");
+                        .HasForeignKey("LeagueId")
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("FantasyFootball.Models.ApplicationUser", "User")
                         .WithMany()

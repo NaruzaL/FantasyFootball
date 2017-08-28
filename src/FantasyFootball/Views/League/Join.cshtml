@@ -1,5 +1,5 @@
 ﻿@{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Join";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @model IEnumerable<FantasyFootball.Models.League>
@@ -13,8 +13,6 @@
         <li>@Html.DisplayFor(model => league.Name)</li>
         <li>@Html.DisplayFor(model => league.TeamCount) / 10 teams filled</li>
         <li>@Html.ActionLink("Join", "Create", "Team", new { id = league.LeagueId})</li>
-
     }
-
-
 }
+<div class="btn btn-default">@Html.ActionLink("Home", "Index")</div>

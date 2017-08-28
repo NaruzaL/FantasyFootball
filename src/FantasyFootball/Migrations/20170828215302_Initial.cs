@@ -205,9 +205,13 @@ namespace FantasyFootball.Migrations
                 {
                     TeamId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    LeagueId = table.Column<int>(nullable: true),
+                    CurrentPlayers = table.Column<int>(nullable: false),
+                    LeagueId = table.Column<int>(nullable: false),
+                    MaxPlayers = table.Column<int>(nullable: false),
                     TeamName = table.Column<string>(nullable: true),
-                    UserId = table.Column<string>(nullable: true)
+                    TotalPoints = table.Column<int>(nullable: false),
+                    UserId = table.Column<string>(nullable: true),
+                    WeekPoints = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -217,7 +221,7 @@ namespace FantasyFootball.Migrations
                         column: x => x.LeagueId,
                         principalTable: "Leagues",
                         principalColumn: "LeagueId",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Teams_AspNetUsers_UserId",
                         column: x => x.UserId,

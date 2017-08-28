@@ -21,6 +21,7 @@ namespace FantasyFootball.Models
         public string InjuryStatus { get; set; }
         public int PassingYards { get; set; }
         public int PassingTD { get; set; }
+        public int IntThrown { get; set; }
         public int Receptions { get; set; }
         public int RecievingYards { get; set; }
         public int RecievingTD { get; set; }

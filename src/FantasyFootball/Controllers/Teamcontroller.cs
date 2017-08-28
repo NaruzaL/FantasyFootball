@@ -8,8 +8,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using System.Security.Claims;
 using Microsoft.EntityFrameworkCore;
-
-
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace FantasyFootball.Controllers
 {
@@ -28,20 +27,18 @@ namespace FantasyFootball.Controllers
 
         //all leagues user already belongs to
         [Authorize]
-        public async Task<IActionResult> Index()
+        public IActionResult Index(int id)
         {
-            var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-            var currentUser = await _userManager.FindByIdAsync(userId);
-            return View(_db.Teams.Where(x => x.User.Id == currentUser.Id));
+            var thisLeague = _db.Leagues.Include(l => l.Teams).FirstOrDefault(league => league.LeagueId == id);
+            return View(thisLeague);
         }
 
-       
         //make a new team
         [Authorize]
         public IActionResult Create(int id)
         {
             var thisLeague = _db.Leagues.FirstOrDefault(league => league.LeagueId == id);
-            
+            ViewBag.LeagueId = new SelectList(_db.Leagues, "LeagueId", "Name");
             return View();
         }
 
@@ -50,8 +47,13 @@ namespace FantasyFootball.Controllers
         {
             var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
             var currentUser = await _userManager.FindByIdAsync(userId);
+            var selectedLeague = _db.Leagues.FirstOrDefault(league => league.LeagueId == team.LeagueId);
+            selectedLeague.TeamCount += 1;
             team.User = currentUser;
-            return RedirectToAction("League", "Details");
+            _db.Entry(selectedLeague).State = EntityState.Modified;
+            _db.Teams.Add(team);
+            _db.SaveChanges();
+            return RedirectToAction("Index", "League");
 
         }
     }

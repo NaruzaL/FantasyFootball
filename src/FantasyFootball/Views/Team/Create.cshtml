@@ -4,16 +4,18 @@
 }
 @model FantasyFootball.Models.Team
 
-<h2>Create your team</h2>
-<hr />
-@using (Html.BeginForm())
-{
-    <div id="leagueForm">
+<div id="leagueForm">
+    <h2>Create your team</h2>
+    <hr />
+    @using (Html.BeginForm())
+    {
+            @Html.LabelFor(model => model.TeamName)
+            @Html.EditorFor(model => model.TeamName)
 
-        @Html.LabelFor(model => model.TeamName)
-        @Html.EditorFor(model => model.TeamName)
+            <p>Chose the league:</p>
+            @Html.DropDownList("LeagueId")
 
-        <input type="submit" value="Create" />
-    </div>
-}
-@Html.ActionLink("Back to FFB home", "Index", "League")
+            <input type="submit" value="Create" />
+    }
+    @Html.ActionLink("Back to FFB home", "Index", "League")
+</div>

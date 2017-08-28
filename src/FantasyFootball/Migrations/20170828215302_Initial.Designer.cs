@@ -8,7 +8,7 @@ using FantasyFootball.Models;
 namespace FantasyFootball.Migrations
 {
     [DbContext(typeof(FantasyFootballContext))]
-    [Migration("20170828192310_Initial")]
+    [Migration("20170828215302_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -207,11 +207,19 @@ namespace FantasyFootball.Migrations
                     b.Property<int>("TeamId")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int?>("LeagueId");
+                    b.Property<int>("CurrentPlayers");
+
+                    b.Property<int>("LeagueId");
+
+                    b.Property<int>("MaxPlayers");
 
                     b.Property<string>("TeamName");
 
+                    b.Property<int>("TotalPoints");
+
                     b.Property<string>("UserId");
+
+                    b.Property<int>("WeekPoints");
 
                     b.HasKey("TeamId");
 
@@ -370,7 +378,8 @@ namespace FantasyFootball.Migrations
                 {
                     b.HasOne("FantasyFootball.Models.League", "League")
                         .WithMany("Teams")
-                        .HasForeignKey("LeagueId");
+                        .HasForeignKey("LeagueId")
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("FantasyFootball.Models.ApplicationUser", "User")
                         .WithMany()
