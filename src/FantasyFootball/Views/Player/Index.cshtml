@@ -4,12 +4,14 @@
 }
 
 @model IEnumerable<FantasyFootball.Models.Player>
-
+@Html.ActionLink("Your team", "Index", "Team")
+<h3>Available players</h3>
 @foreach(var player in Model)
 {
     @if (player.FreeAgent == true)
     {
         <h3>@player.PlayerName</h3>
+        <h5>@player.Position</h5>
         <p>@player.NFLTeam</p>
         @if (player.Position == "QB" || player.Position == "RB" || player.Position == "WR" || player.Position == "TE")
         {
@@ -87,6 +89,7 @@
             </table>
 
         }
+        <hr />
 
     }
 

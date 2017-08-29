@@ -12,6 +12,7 @@ namespace FantasyFootball.Controllers
         private FantasyFootballContext db = new FantasyFootballContext();
         public IActionResult Index()
         {
+            //db.Teams.FirstOrDefault()
             return View(db.Players.ToList());
         }
     }

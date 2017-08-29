@@ -16,10 +16,11 @@
 
 
         <h3>@player.PlayerName</h3>
+        <h5>@player.Position</h5>
         <p>@player.NFLTeam</p>
         @if (player.Position == "QB" || player.Position == "RB" || player.Position == "WR" || player.Position == "TE")
         {
-            <table class="table table-bordered table-responsive table-hover">
+            <table class="table">
                 <tr>
                     <th>Passing yards</th>
                     <th>Passing TD's</th>
@@ -92,7 +93,7 @@
             </table>
 
         }
-
+        <hr />
     }
     else
     {
