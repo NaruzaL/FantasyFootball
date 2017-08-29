@@ -4,7 +4,7 @@
 }
 
 @model IEnumerable<FantasyFootball.Models.Player>
-@Html.ActionLink("Your team", "Index", "Team")
+@Html.ActionLink("Your team", "Index", "Team", new { id = ViewBag.TeamId })
 <h3>Available players</h3>
 @foreach(var player in Model)
 {
