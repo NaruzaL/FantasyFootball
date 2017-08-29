@@ -4,6 +4,8 @@
 }
 @model FantasyFootball.Models.League
 
+@Html.ActionLink("View free agents", "Index", "Player")
+
 <h2>@Model.Name</h2>
 
 @foreach(var team in Model.Teams)

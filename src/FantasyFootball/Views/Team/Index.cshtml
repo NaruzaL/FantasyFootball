@@ -3,7 +3,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-
+@Html.ActionLink("League view", "Details", "League", new { id = Model.LeagueId })
 @model FantasyFootball.Models.Team
 
 <h2>@Model.TeamName</h2>

@@ -8,9 +8,10 @@ using FantasyFootball.Models;
 namespace FantasyFootball.Migrations
 {
     [DbContext(typeof(FantasyFootballContext))]
-    partial class FantasyFootballContextModelSnapshot : ModelSnapshot
+    [Migration("20170829181346_AddIntThrownToPlayer")]
+    partial class AddIntThrownToPlayer
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.0.1")
