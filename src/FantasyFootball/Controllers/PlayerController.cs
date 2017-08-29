@@ -15,8 +15,7 @@ namespace FantasyFootball.Controllers
     {
         private readonly FantasyFootballContext _db;
         private readonly UserManager<ApplicationUser> _userManager;
-
-
+        
         public Playercontroller(UserManager<ApplicationUser> userManager, FantasyFootballContext db)
         {
             _userManager = userManager;
