@@ -7,6 +7,7 @@
 @Html.ActionLink("Your team", "Index", "Team", new { id = ViewBag.TeamId })
 
 <h3>Available players</h3>
+<div id="message"></div>
 @foreach(var player in Model)
 {
     @if (player.FreeAgent == true)
@@ -14,8 +15,11 @@
         <h3>@player.PlayerName</h3>
         <h5>@player.Position</h5>
         <p>@player.NFLTeam</p>
+        <button class="@player.PlayerId" type="submit">Claim player</button>
+        
         @if (player.Position == "QB" || player.Position == "RB" || player.Position == "WR" || player.Position == "TE")
         {
+            
             <table class="table table-bordered table-responsive table-hover">
                 <tr>
                     <th>Passing yards</th>
@@ -46,6 +50,7 @@
         }
         else if (player.Position == "K")
         {
+           
             <table class="table table-bordered table-responsive table-hover">
                 <tr>
                     <th>PAT</th>
@@ -64,6 +69,7 @@
         }
         else
         {
+            
             <table class="table table-bordered table-responsive table-hover">
                 <tr>
                     <th>Points against</th>
@@ -93,5 +99,20 @@
         <hr />
 
     }
+<script>
+    $('.@player.PlayerId').submit(function () {
+        event.preventDefault();
+        $.ajax({
+            type: 'POST',
+            dataType: 'html',
+            url: '@Url.Action("AddPlayer")',
+            data: {id : @player.PlayerId, tId: @ViewBag.TeamId},
+            success: function (result) {
+                var successMessage = "You added" + result.PlayerName + "to your team";
+                $('#message').html(successMessage);
+            }
+        });
+    });
+</script>
 
 }

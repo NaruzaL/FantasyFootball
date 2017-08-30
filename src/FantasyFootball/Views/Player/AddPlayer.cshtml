@@ -1,0 +1,41 @@
+﻿@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model FantasyFootball.Models.Player
+
+@*if team is full need option to drop one player to pick up selected player*@
+
+@using (Html.BeginForm())
+{
+    @Html.HiddenFor(model => model.PlayerId)
+    @Html.HiddenFor(model => model.PlayerName)
+    @Html.HiddenFor(model => model.NFLTeam)
+    @Html.HiddenFor(model => model.WeeklyOpponent)
+    @Html.HiddenFor(model => model.Position)
+    @Html.HiddenFor(model => model.Active)
+    @Html.HiddenFor(model => model.InjuryStatus)
+    @Html.HiddenFor(model => model.PassingYards)
+    @Html.HiddenFor(model => model.PassingTD)
+    @Html.HiddenFor(model => model.IntThrown)
+    @Html.HiddenFor(model => model.Receptions)
+    @Html.HiddenFor(model => model.RecievingYards)
+    @Html.HiddenFor(model => model.RecievingTD)
+    @Html.HiddenFor(model => model.RushingYards)
+    @Html.HiddenFor(model => model.RushingTD)
+    @Html.HiddenFor(model => model.TwoPtConv)
+    @Html.HiddenFor(model => model.Fumbles)
+    @Html.HiddenFor(model => model.FgShort)
+    @Html.HiddenFor(model => model.FgMedium)
+    @Html.HiddenFor(model => model.PointAfter)
+    @Html.HiddenFor(model => model.PointsAllowed)
+    @Html.HiddenFor(model => model.Interception)
+    @Html.HiddenFor(model => model.Sack)
+    @Html.HiddenFor(model => model.ForcedFumble)
+    @Html.HiddenFor(model => model.FumbleRecovery)
+    @Html.HiddenFor(model => model.BlockedKick)
+    @Html.HiddenFor(model => model.DefTD)
+    @Html.HiddenFor(model => model.Safety)
+    
+}
