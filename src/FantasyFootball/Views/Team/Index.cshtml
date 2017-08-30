@@ -4,6 +4,7 @@
 }
 
 @Html.ActionLink("League view", "Details", "League", new { id = Model.LeagueId })
+@Html.ActionLink("View free agents", "Index", "Player", new { id = Model.TeamId })
 @model FantasyFootball.Models.Team
 
 <h2>@Model.TeamName</h2>
@@ -13,7 +14,6 @@
 {
     @if (player != null)
     {
-
 
         <h3>@player.PlayerName</h3>
         <h5>@player.Position</h5>

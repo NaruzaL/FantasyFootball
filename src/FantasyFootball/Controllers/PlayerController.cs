@@ -21,11 +21,10 @@ namespace FantasyFootball.Controllers
             _userManager = userManager;
             _db = db;
         }
-        public async Task<IActionResult> Index()
+        public IActionResult Index(int id)
         {
-            var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-            var currentUser = await _userManager.FindByIdAsync(userId);
-            ViewBag.TeamId = _db.Teams.Where(x => x.User.Id == currentUser.Id);
+            var userTeam = _db.Teams.FirstOrDefault(team => team.TeamId == id);
+            ViewBag.TeamId = userTeam.TeamId;
             return View(_db.Players.ToList());
         }
     }
