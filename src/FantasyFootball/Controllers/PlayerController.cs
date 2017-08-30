@@ -24,6 +24,7 @@ namespace FantasyFootball.Controllers
             _userManager = userManager;
             _db = db;
         }
+        [Authorize]
         public IActionResult Index(int id)
         {
             var userTeam = _db.Teams.FirstOrDefault(team => team.TeamId == id);
@@ -31,7 +32,7 @@ namespace FantasyFootball.Controllers
             return View(_db.Players.ToList());
         }
 
-        
+        [Authorize]
         public IActionResult AddPlayer(int id, int tId)
         {
             var thisPlayer = _db.Players.FirstOrDefault(p => p.PlayerId == id);
@@ -39,7 +40,7 @@ namespace FantasyFootball.Controllers
             ViewBag.TeamId = new SelectList(userTeam, "TeamId", "TeamName");
             return View(thisPlayer);
         }
-
+        [Authorize]
         [HttpPost]
         public IActionResult AddPlayer(Player player, string TeamId)
         {
@@ -50,5 +51,22 @@ namespace FantasyFootball.Controllers
             _db.SaveChanges();
             return RedirectToAction ("Index", "League");
         }
+        [Authorize]
+        public IActionResult DropPlayer(int id)
+        {
+            var thisPlayer = _db.Players.FirstOrDefault(p => p.PlayerId == id);
+            return View(thisPlayer);
+        }
+        [Authorize]
+        [HttpPost]
+        public IActionResult DropPlayer(Player player)
+        {
+            player.FreeAgent = true;
+            player.Team = null;
+            _db.Entry(player).State = EntityState.Modified;
+            _db.SaveChanges();
+            return RedirectToAction("Index", "League");
+        }
+
     }
 }

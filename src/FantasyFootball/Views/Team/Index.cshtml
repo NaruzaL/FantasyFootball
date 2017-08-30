@@ -18,6 +18,8 @@
         <h3>@player.PlayerName</h3>
         <h5>@player.Position</h5>
         <p>@player.NFLTeam</p>
+        <button class="@player.PlayerId" type="submit">Drop Player</button>
+        <div id="@player.PlayerId"></div>
         @if (player.Position == "QB" || player.Position == "RB" || player.Position == "WR" || player.Position == "TE")
         {
             <table class="table">
@@ -100,5 +102,20 @@
         <p>Your league hasn't drafted yet.</p>
 
     }
+<script>
+$('.@player.PlayerId').click(function () {
+console.log("test");
+    $.ajax({
+        type: 'GET',
+        dataType: 'html',
+        url: '@Url.Action("DropPlayer", "Player")',
+        data: {id : @player.PlayerId},
+        success: function (result) {
+            console.log(@player.PlayerId);
+            $('#@player.PlayerId').html(result);
+        }
+    });
+});
+</script>
 
 }
