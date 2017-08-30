@@ -21,7 +21,6 @@ namespace FantasyFootball.Models
       
         public League ()
         {
-            
             MaxTeams = 10;
         }
     

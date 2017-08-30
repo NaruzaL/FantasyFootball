@@ -7,6 +7,7 @@
 
 @*if team is full need option to drop one player to pick up selected player*@
 
+@Model.PlayerName
 @using (Html.BeginForm())
 {
     @Html.HiddenFor(model => model.PlayerId)
@@ -14,6 +15,7 @@
     @Html.HiddenFor(model => model.NFLTeam)
     @Html.HiddenFor(model => model.WeeklyOpponent)
     @Html.HiddenFor(model => model.Position)
+    @*@Html.HiddenFor(model => model.FreeAgent)*@
     @Html.HiddenFor(model => model.Active)
     @Html.HiddenFor(model => model.InjuryStatus)
     @Html.HiddenFor(model => model.PassingYards)
@@ -28,6 +30,7 @@
     @Html.HiddenFor(model => model.Fumbles)
     @Html.HiddenFor(model => model.FgShort)
     @Html.HiddenFor(model => model.FgMedium)
+    @Html.HiddenFor(model => model.FgLong)
     @Html.HiddenFor(model => model.PointAfter)
     @Html.HiddenFor(model => model.PointsAllowed)
     @Html.HiddenFor(model => model.Interception)
@@ -37,5 +40,9 @@
     @Html.HiddenFor(model => model.BlockedKick)
     @Html.HiddenFor(model => model.DefTD)
     @Html.HiddenFor(model => model.Safety)
-    
+
+    <p>Will be added to:</p>
+    @Html.DropDownList("TeamId", (SelectList)ViewBag.TeamId)
+
+    <input type="submit" value="Add player" />
 }

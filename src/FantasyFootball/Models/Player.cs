@@ -44,10 +44,5 @@ namespace FantasyFootball.Models
 
         public virtual Team Team { get; set; }
        
-        public Player()
-        {
-            FreeAgent = true;
-            Active = false;
-        }
     }
 }

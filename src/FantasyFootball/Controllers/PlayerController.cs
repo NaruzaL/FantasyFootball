@@ -8,36 +8,47 @@ using FantasyFootball.Models;
 using Microsoft.AspNetCore.Authorization;
 using System.Security.Claims;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace FantasyFootball.Controllers
 {
     public class Playercontroller : Controller
     {
-        private FantasyFootballContext db = new FantasyFootballContext();   
+        private FantasyFootballContext db = new FantasyFootballContext();
+
+        private readonly FantasyFootballContext _db;
+        private readonly UserManager<ApplicationUser> _userManager;
+
+        public Playercontroller(UserManager<ApplicationUser> userManager, FantasyFootballContext db)
+        {
+            _userManager = userManager;
+            _db = db;
+        }
         public IActionResult Index(int id)
         {
-            var userTeam = db.Teams.FirstOrDefault(team => team.TeamId == id);
+            var userTeam = _db.Teams.FirstOrDefault(team => team.TeamId == id);
             ViewBag.TeamId = userTeam.TeamId;
-            return View(db.Players.ToList());
+            return View(_db.Players.ToList());
         }
-        //[HttpPost]
-        //public IActionResult AddPlayer(int id, int tId)
-        //{
-        //    var thisPlayer = db.Players.FirstOrDefault(p => p.PlayerId == id);
-        //    var userTeam = db.Teams.FirstOrDefault(team => team.TeamId == tId);
-        //    ViewBag.TeamId = userTeam.TeamId;
-        //    return View(thisPlayer);
-        //}
+
+        
+        public IActionResult AddPlayer(int id, int tId)
+        {
+            var thisPlayer = _db.Players.FirstOrDefault(p => p.PlayerId == id);
+            var userTeam = _db.Teams.Where(t => t.TeamId == tId);
+            ViewBag.TeamId = new SelectList(userTeam, "TeamId", "TeamName");
+            return View(thisPlayer);
+        }
 
         [HttpPost]
-        public IActionResult AddPlayer(int id, int tid)
+        public IActionResult AddPlayer(Player player, string TeamId)
         {
-            var thisPlayer = db.Players.FirstOrDefault(p => p.PlayerId == id);
-            thisPlayer.Team = db.Teams.FirstOrDefault(team => team.TeamId == tid);
-            thisPlayer.FreeAgent = false;
-            db.Entry(thisPlayer).State = EntityState.Modified;
-            db.SaveChanges();
-            return Json(db.Players.ToList());
+            var id = int.Parse(TeamId);
+            player.Team = _db.Teams.FirstOrDefault(t => t.TeamId == id);
+            player.FreeAgent = false;
+            _db.Entry(player).State = EntityState.Modified;
+            _db.SaveChanges();
+            return RedirectToAction ("Index", "League");
         }
     }
 }
