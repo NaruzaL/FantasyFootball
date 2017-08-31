@@ -1,2 +1,36 @@
 ﻿body {
+    font-family: 'Martel Sans', sans-serif;
+}
+
+li {
+    list-style:none;
+}
+
+.displayPlayer {
+    background-color: rgba(12, 28, 91, 0.40);
+    border: 2px solid #585757;
+    padding-left: 20px;
+    border-radius:15px;
+}
+
+.teamPlayer {
+    background-color: rgba(12, 28, 91, 0.40);
+    border: 2px solid #585757;
+    padding-left: 20px;
+    border-radius:15px;
+}
+
+.teamList {
+    background-color: rgba(12, 28, 91, 0.40);
+    border: 2px solid #585757;
+    padding-left: 20px;
+    border-radius:15px;
+}
+
+.navbar {
+    background-color: #E9A158;
+}
+
+.accountIndex {
+    text-align: center;
 }

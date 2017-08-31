@@ -19,7 +19,12 @@
     }
     else
     {
-        <p>@Html.ActionLink("Register", "Register")</p>
-        <p>@Html.ActionLink("Log in", "Login")</p>
+        <div class="accountIndex">
+            <h3>Welcome to Epicodus Fantasy Football.</h3>
+            <p>Please sign in or create an account</p>
+            <div class="btn btn-warning">@Html.ActionLink("Register", "Register")</div>
+            <div class="btn btn-warning">@Html.ActionLink("Log in", "Login")</div>
+
+        </div>
     }
 </div>

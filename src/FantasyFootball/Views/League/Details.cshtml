@@ -4,14 +4,18 @@
 }
 @model FantasyFootball.Models.League
 
+<nav class="navbar navbar-toggleable-md navbar-light bg-faded">
+    <div class="btn btn-warning">@Html.ActionLink("Home", "Index")</div>
+    <div class="btn btn-warning">@Html.ActionLink("Account home", "Index", "Account")</div>
+</nav>
 
 <h2>@Model.Name</h2>
 
-@foreach(var team in Model.Teams)
+@foreach (var team in Model.Teams)
 {
-   
-    <h4>@Html.ActionLink(team.TeamName, "Index", "Team", new { id = team.TeamId })</h4>
-    <h5>Total Points: @team.TotalPoints</h5>
-    <p>Points this week: @team.WeekPoints</p>
+    <div class="teamList">
+        <h4>@Html.ActionLink(team.TeamName, "Index", "Team", new { id = team.TeamId })</h4>
+        <h5>Total Points: @team.TotalPoints</h5>
+        <p>Points this week: @team.WeekPoints</p>
+    </div>
 }
-@Html.ActionLink("Home", "Index")

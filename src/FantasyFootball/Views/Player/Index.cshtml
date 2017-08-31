@@ -2,13 +2,20 @@
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<header>
+<nav class="navbar navbar-toggleable-md navbar-light bg-faded">
+    <div class="btn btn-warning">@Html.ActionLink("Your team", "Index", "Team", new { id = ViewBag.TeamId })</div>
+</nav>
+</header>
 
 @model IEnumerable<FantasyFootball.Models.Player>
-@Html.ActionLink("Your team", "Index", "Team", new { id = ViewBag.TeamId })
 
 <h3>Available players</h3>
+<hr />
+
 @foreach(var player in Model)
 {
+    <div class="displayPlayer">
     @if (player.FreeAgent == true)
     {
         <h3>@player.PlayerName</h3>
@@ -95,9 +102,9 @@
             </table>
 
         }
-        <hr />
 
     }
+</div>
 <script>
     $('.@player.PlayerId').click(function () {
         console.log("test");

@@ -2,17 +2,23 @@
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<nav class="navbar navbar-toggleable-md navbar-light bg-faded">
+    <div class="btn btn-warning">@Html.ActionLink("Join a league", "Join")</div>
+    <div class="btn btn-warning">@Html.ActionLink("Create a league", "Create")</div>
+    <div class="btn btn-warning">@Html.ActionLink("Account home", "Index", "Account")</div>
+</nav>
+
 @model IEnumerable<FantasyFootball.Models.League>
-
-<h3>Your leagues</h3>
-
+<h2>Your leagues</h2>
+<hr />
 @foreach (var league in Model)
 {
    
-        <h3>@Html.DisplayFor(model => league.Name)</h3>
+        <h4>@Html.DisplayFor(model => league.Name)</h4>
         @if (league.TeamCount > 0)
         {
         <li>@Html.ActionLink("View this league", "Details", new { id = league.LeagueId })</li>
+        <hr />
         }
         else
         {
@@ -21,5 +27,3 @@
         }
 
 }
-<div class="btn btn-default">@Html.ActionLink("Join a league", "Join")</div>
-<div class="btn btn-default">@Html.ActionLink("Create a league", "Create")</div>

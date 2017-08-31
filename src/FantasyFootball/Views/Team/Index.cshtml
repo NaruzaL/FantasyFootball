@@ -3,8 +3,12 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-@Html.ActionLink("League view", "Details", "League", new { id = Model.LeagueId })
-@Html.ActionLink("View free agents", "Index", "Player", new { id = Model.TeamId })
+    <nav class="navbar navbar-toggleable-md navbar-light bg-faded">
+        <div class="btn btn-warning">@Html.ActionLink("League view", "Details", "League", new { id = Model.LeagueId })</div>
+        <div class="btn btn-warning">@Html.ActionLink("View free agents", "Index", "Player", new { id = Model.TeamId })</div>
+        <div class="btn btn-warning">@Html.ActionLink("Account home", "Index", "Account")</div>
+    </nav>
+
 @model FantasyFootball.Models.Team
 
 <h2>@Model.TeamName</h2>
@@ -12,110 +16,114 @@
 
 @foreach (var player in Model.Players)
 {
-    @if (player != null)
-    {
+    <div class="teamPlayer">
 
-        <h3>@player.PlayerName</h3>
-        <h5>@player.Position</h5>
-        <p>@player.NFLTeam</p>
-        <button class="@player.PlayerId" type="submit">Drop Player</button>
-        <div id="@player.PlayerId"></div>
-        @if (player.Position == "QB" || player.Position == "RB" || player.Position == "WR" || player.Position == "TE")
+        @if (player != null)
         {
-            <table class="table">
-                <tr>
-                    <th>Passing yards</th>
-                    <th>Passing TD's</th>
-                    <th>INT</th>
-                    <th>Receptions</th>
-                    <th>Recieving yards</th>
-                    <th>Rec TD's</th>
-                    <th>Rushing yards</th>
-                    <th>Rushing TD's</th>
-                    <th>2pt conv</th>
-                    <th>Fumbles</th>
-                </tr>
-                <tr>
-                    <td>@player.PassingYards</td>
-                    <td>@player.PassingTD</td>
-                    <td>@player.IntThrown</td>
-                    <td>@player.Receptions</td>
-                    <td>@player.RecievingYards</td>
-                    <td>@player.RecievingTD</td>
-                    <td>@player.RushingYards</td>
-                    <td>@player.RushingTD</td>
-                    <td>@player.TwoPtConv</td>
-                    <td>@player.Fumbles</td>
-                </tr>
 
-            </table>
-        }
-        else if (player.Position == "K")
-        {
-            <table class="table table-bordered table-responsive table-hover">
-                <tr>
-                    <th>PAT</th>
-                    <th>FG (1-30 yards)</th>
-                    <th>FG (31-49 yards)</th>
-                    <th>FG (50+ yards)</th>
-                </tr>
-                <tr>
-                    <td>@player.PointAfter</td>
-                    <td>@player.FgShort</td>
-                    <td>@player.FgMedium</td>
-                    <td>@player.FgLong</td>
-                </tr>
+            <h3>@player.PlayerName</h3>
+            <h5>@player.Position</h5>
+            <p>@player.NFLTeam</p>
+            <button class="@player.PlayerId" type="submit">Drop Player</button>
+            <div id="@player.PlayerId"></div>
+            @if (player.Position == "QB" || player.Position == "RB" || player.Position == "WR" || player.Position == "TE")
+            {
+                <table class="table table-bordered table-responsive table-hover">
+                    <tr>
+                        <th>Passing yards</th>
+                        <th>Passing TD's</th>
+                        <th>INT</th>
+                        <th>Receptions</th>
+                        <th>Recieving yards</th>
+                        <th>Rec TD's</th>
+                        <th>Rushing yards</th>
+                        <th>Rushing TD's</th>
+                        <th>2pt conv</th>
+                        <th>Fumbles</th>
+                    </tr>
+                    <tr>
+                        <td>@player.PassingYards</td>
+                        <td>@player.PassingTD</td>
+                        <td>@player.IntThrown</td>
+                        <td>@player.Receptions</td>
+                        <td>@player.RecievingYards</td>
+                        <td>@player.RecievingTD</td>
+                        <td>@player.RushingYards</td>
+                        <td>@player.RushingTD</td>
+                        <td>@player.TwoPtConv</td>
+                        <td>@player.Fumbles</td>
+                    </tr>
 
-            </table>
+                </table>
+            }
+            else if (player.Position == "K")
+            {
+                <table class="table table-bordered table-responsive table-hover">
+                    <tr>
+                        <th>PAT</th>
+                        <th>FG (1-30 yards)</th>
+                        <th>FG (31-49 yards)</th>
+                        <th>FG (50+ yards)</th>
+                    </tr>
+                    <tr>
+                        <td>@player.PointAfter</td>
+                        <td>@player.FgShort</td>
+                        <td>@player.FgMedium</td>
+                        <td>@player.FgLong</td>
+                    </tr>
+
+                </table>
+            }
+            else
+            {
+                <table class="table table-bordered table-responsive table-hover">
+                    <tr>
+                        <th>Points against</th>
+                        <th>INT's</th>
+                        <th>Sacks</th>
+                        <th>Forced fumbles</th>
+                        <th>Fumbles recovered</th>
+                        <th>Blocked Kicks</th>
+                        <th>Safety</th>
+                        <th>TD's</th>
+                    </tr>
+                    <tr>
+                        <td>@player.PointsAllowed</td>
+                        <td>@player.Interception</td>
+                        <td>@player.Sack</td>
+                        <td>@player.ForcedFumble</td>
+                        <td>@player.FumbleRecovery</td>
+                        <td>@player.BlockedKick</td>
+                        <td>@player.Safety</td>
+                        <td>@player.DefTD</td>
+                    </tr>
+
+                </table>
+
+            }
+            <hr />
         }
         else
         {
-            <table class="table table-bordered table-responsive table-hover">
-                <tr>
-                    <th>Points against</th>
-                    <th>INT's</th>
-                    <th>Sacks</th>
-                    <th>Forced fumbles</th>
-                    <th>Fumbles recovered</th>
-                    <th>Blocked Kicks</th>
-                    <th>Safety</th>
-                    <th>TD's</th>
-                </tr>
-                <tr>
-                    <td>@player.PointsAllowed</td>
-                    <td>@player.Interception</td>
-                    <td>@player.Sack</td>
-                    <td>@player.ForcedFumble</td>
-                    <td>@player.FumbleRecovery</td>
-                    <td>@player.BlockedKick</td>
-                    <td>@player.Safety</td>
-                    <td>@player.DefTD</td>
-                </tr>
-
-            </table>
+            <p>Your league hasn't drafted yet.</p>
 
         }
-        <hr />
-    }
-    else
-    {
-        <p>Your league hasn't drafted yet.</p>
 
-    }
-<script>
-$('.@player.PlayerId').click(function () {
-console.log("test");
-    $.ajax({
-        type: 'GET',
-        dataType: 'html',
-        url: '@Url.Action("DropPlayer", "Player")',
-        data: {id : @player.PlayerId},
-        success: function (result) {
-            console.log(@player.PlayerId);
-            $('#@player.PlayerId').html(result);
-        }
-    });
-});
-</script>
+    </div>
+    <script>
+        $('.@player.PlayerId').click(function () {
+            console.log("test");
+            $.ajax({
+                type: 'GET',
+                dataType: 'html',
+                url: '@Url.Action("DropPlayer", "Player")',
+                data: {id : @player.PlayerId},
+                success: function (result) {
+                    console.log(@player.PlayerId);
+                    $('#@player.PlayerId').html(result);
+                }
+            });
+        });
+    </script>
 
 }
