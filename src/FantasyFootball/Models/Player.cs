@@ -41,7 +41,6 @@ namespace FantasyFootball.Models
         public int BlockedKick { get; set; }
         public int DefTD { get; set; }
         public int Safety { get; set; }
-
         public virtual Team Team { get; set; }
        
     }

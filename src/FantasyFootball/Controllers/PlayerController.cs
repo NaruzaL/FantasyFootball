@@ -61,8 +61,9 @@ namespace FantasyFootball.Controllers
         [HttpPost]
         public IActionResult DropPlayer(Player player)
         {
+            var thisPlayer = _db.Players.FirstOrDefault(p => p.PlayerId == player.PlayerId);
+            thisPlayer.Team = null;
             player.FreeAgent = true;
-            player.Team = null;
             _db.Entry(player).State = EntityState.Modified;
             _db.SaveChanges();
             return RedirectToAction("Index", "League");
